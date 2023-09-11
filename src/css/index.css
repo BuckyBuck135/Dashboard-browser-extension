@@ -2,6 +2,8 @@
     --border-radius: 1rem;
     --padding-05: 0.5rem;
     --fs-500: 1.1rem;
+    --clr-input: rgb(235, 255, 19);
+    --clr-input-alpha: rgb(41, 70, 199, 0.3)
 }
 
 body {
@@ -16,15 +18,13 @@ body {
 
 main {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+
     grid-template-areas: 
         "crypto crypto weather"
         ". time ."
         "unsplash unsplash .";
     height: 100dvh;
     padding: 1em;
-    /* text-shadow: 0px 0px 20px #aaaaaa; */
 }
 
 .crypto     {grid-area: crypto}
@@ -52,8 +52,6 @@ main {
 
 
 /**** CRYPTO SECTION *****/
-
-
 .crypto-data-wrapper {
     display: grid;
     grid-template-columns: repeat(2, minmax(260px, 1fr));
@@ -140,13 +138,31 @@ section.time h2 {
     grid-area: wind; 
 }
 
-
-/* .weather-card {
-    background-color: paleturquoise;
-    border-radius: var(--border-radius);
-    padding: var(--padding-05)
-} */
 /**** UTILITY *****/
+
+.toast {
+    background-color: orangered;
+    border-radius: var(--border-radius);
+    padding: var(--padding-05);
+    position: fixed;
+    align-self: flex-end;
+    justify-self: center;
+    transform: translateY(4rem);
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.glass {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: var(--padding-05);
+    width: fit-content;
+}
+
 .flex {
     display: flex;
     align-items: center;
@@ -201,37 +217,21 @@ button {
     cursor: pointer;
 }
 
+button:hover {
+    background-color: lightgray;
+}
+
 .settings-btn {
     border: none;
     border-radius: 0 calc(var(--border-radius) - var(--padding-05)) 0 0;
 }
 
+.refresh-btn {
+    border: none;
+}
+
 .search-btn {
     border-radius: 0 calc(var(--border-radius) - var(--padding-05)) calc(var(--border-radius) - var(--padding-05)) 0;
-}
-
-
-.toast {
-    background-color: orangered;
-    border-radius: var(--border-radius);
-    padding: var(--padding-05);
-    position: fixed;
-    align-self: flex-end;
-    justify-self: center;
-    transform: translateY(4rem);
-    opacity: 0;
-    transition: 0.3s;
-}
-
-.glass {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: var(--padding-05);
-    width: fit-content;
 }
 
 .show {
@@ -258,17 +258,21 @@ section > header {
     /* nested border radius = parent border-radius - parent padding */
     border-radius: calc(var(--border-radius) - var(--padding-05)) calc(var(--border-radius) - var(--padding-05)) 0 0;
     text-align: right;
+    background-image: url(data:image/png;base64,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);
 }
 
 /**** DIALOGS *****/
 dialog {
-    position: absolute;
-    top: 0;
-    left: 0;
+    inset-inline-end: 0;
+    inset-inline-start: auto;
     height: 100vh;
     max-height: 100vh;
     width: 30vw;
     padding: 2em 1em;
+    background-color: rgb(42, 42, 42);
+    background-image: url(https://img.freepik.com/free-photo/design-space-paper-textured-background_53876-42312.jpg?w=996&t=st=1694439103~exp=1694439703~hmac=89a90abcd03191ebad39661b8c3de1e78c0b04c19a39ded27c7d6d0cbf732df9);
+    background-blend-mode: multiply;
+    color:rgb(246, 246, 246)
 }
 
 dialog::backdrop {
@@ -283,10 +287,20 @@ dialog::backdrop {
 }
 
 fieldset {
-    margin-bottom: 1.5em
+    margin-bottom: 2em
 }
 
-.theme-picker {
+.color-picker {
+    width: 220px;
+    justify-content: space-between;
+}
+
+.color-picker:first-child {
+    margin-bottom: 0.3em;
+}
+
+.theme-picker,
+.color-picker {
     display: flex;
     align-items: center;
 }
@@ -298,4 +312,44 @@ fieldset {
 .theme-picker input {
     flex: 1;
     width: 50%;
+}
+
+input[type="radio"] {
+    appearance: none;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--clr-input);
+    transition: 0.2s all linear;
+}  
+ 
+input[type="checkbox"] {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--clr-input);
+    transition: 0.2s all linear;
+} 
+
+input:checked {
+    border: 6px solid var(--clr-input);
+}
+  
+input[type="radio"]:hover,
+input[type="checkbox"]:hover {
+    background-color:  var(--clr-input-alpha);
+}
+
+input[type="search"]:hover {
+    outline: 2px solid var(--clr-input)
+}
+
+select:active,
+select:focus,
+input:active,
+input:focus,
+button:active,
+button:focus {
+  outline: 4px solid var(--clr-input);
+  outline-offset: 2px;
 }
