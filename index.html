@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="./src/css/reset.css">
+    <link rel="stylesheet" href="./src/css/index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Dashboard</title>
+    <script src="https://kit.fontawesome.com/572efc1e1c.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <main>
+        <section id="crypto" class="crypto glass flex column align-start gap1" >
+            <header id="crypto-header">
+                <button id="refresh-crypto-btn" title="Refresh crypto data"><i class="fa-solid fa-arrows-rotate"></i></button>
+                <button class="settings-btn show-dialog" title="Open settings dialog"><i class="fa-solid fa-gear" ></i></button>
+            </header>
+            <ul id="crypto-data" class="crypto-data-wrapper align-start">
+                <!-- CoinGecko rendered here -->
+            </ul>
+        </section>
+
+        <section id="weather" class="weather glass flex column align-start">
+            <header id="weather-header">
+                <button class="settings-btn show-dialog" title="Open settings dialog"><i class="fa-solid fa-gear" ></i></button>
+            </header>
+            <div class="weather-data" id="weather-data">
+                <!-- OpenWeather rendered here -->
+            </div>
+        </section>
+
+        <section id="time" class="time glass flex column">
+            <header id="time-header">
+                <button class="settings-btn show-dialog" title="Open settings dialog"><i class="fa-solid fa-gear" ></i></button>
+            </header>
+            <h1>DATE HERE</h1>
+            <h2>TIME HERE</h2>
+
+        </section>
+        
+
+        <section id="unsplash" class="unsplash glass">
+            <!-- Unsplash rendered here -->
+        </section>
+        <div class="toast" id="toast"></div>
+    </main>
+    <aside>
+        <dialog id="dialog">
+            <form id="form"> 
+                <fieldset>
+                    <legend>Locale</legend>
+                    <section>
+                        <label for="locale-selector">Select locale:</label>
+                        <select id="locale-selector" name="locale">
+                            <option value="fr-fr">fr-fr</option>
+                            <option value="en-us">en-us</option>
+                            <option value="en-gb">en-gb</option>
+                            <option value="ja-jp">ja-jp</option>
+                        </select>
+                    </section>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Cryptocurrencies</legend>
+                    <section>
+                        <label for="currency-selector">Select currency:</label>
+                        <select id="currency-selector" name="currency">
+                            <option value="EUR">EUR €</option>
+                            <option value="USD">USD $</option>
+                            <option value="AUD">AUD $</option>
+                            <option value="HKD">HKD $</option>
+                            <option value="GBP">GBP £</option>
+                        </select>
+                    </section>
+                    <section>
+                        <label class="block">Choose Cryptocurrencies:</label>
+                        <input type="checkbox" id="btcCheckbox" name="cryptocurrency" value="bitcoin" checked>
+                        <label for="btcCheckbox">BTC</label>
+                        <input type="checkbox" id="ethCheckbox" name="cryptocurrency" value="ethereum" checked>
+                        <label for="ethCheckbox">ETH</label>
+                        <input type="checkbox" id="nexoCheckbox" name="cryptocurrency" value="nexo" checked>
+                        <label for="nexoCheckbox">NEXO</label>
+                    </section>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Unit system</legend>
+                        <section>
+                            <p class="block">Choose unit system</p>
+                            <input type="radio" id="imperial" name="units" value="imperial">
+                            <label for="imperial">Imperial</label>
+                            <input type="radio" id="metric" name="units" value="metric" checked>
+                            <label for="metric">Metric</label>
+                        </section>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Colors</legend>
+                        <section>
+                            <label for="colorPicker">Choose a background color:</label>
+                            <input type="color" id="colorPicker" name="colorPicker" value="#ffffff">
+                        </section>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Background image</legend>
+                        <section class="theme-picker">
+                            <label for="themePicker">Choose a theme:</label>
+                            <input type="search" id="themePicker" name="themePicker">
+                            <button id="theme-btn" class="search-btn" aria-label="Search button" title="Search button">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+
+                        </section>
+                </fieldset>
+            </form>
+            <button class="close-btn" id="close-dialog" title="Close settings dialog"><i class="fa-solid fa-xmark"></i></button>
+        </dialog>
+    </aside>
+    <script src="./src/js/index.js" type="module"></script>
+</body>
+</html>

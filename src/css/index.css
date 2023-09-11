@@ -1,0 +1,301 @@
+:root {
+    --border-radius: 1rem;
+    --padding-05: 0.5rem;
+    --fs-500: 1.1rem;
+}
+
+body {
+    background: no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas: 
+        "crypto crypto weather"
+        ". time ."
+        "unsplash unsplash .";
+    height: 100dvh;
+    padding: 1em;
+    /* text-shadow: 0px 0px 20px #aaaaaa; */
+}
+
+.crypto     {grid-area: crypto}
+.weather    {grid-area: weather}
+.time       {grid-area: time}
+.unsplash   {grid-area: unsplash}
+
+
+.weather {
+    justify-self: flex-end;
+}
+
+.time {
+    text-align: center;
+    align-self: center;
+    justify-self: center;
+}
+
+.unsplash {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    align-self: flex-end;
+}
+
+
+/**** CRYPTO SECTION *****/
+
+
+.crypto-data-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
+    gap: 1em 2em;
+}
+
+.crypto-data {
+    display: grid;
+    grid-template-areas: 
+        "image name price"
+        "image symbol change"
+    ;
+    column-gap: 1em;
+}
+
+.crypto-image {grid-area: image; height: 80%; justify-self: flex-end;}
+.crypto-name {grid-area: name }
+.crypto-symbol {grid-area: symbol; text-transform: uppercase;}
+.crypto-price {grid-area: price; justify-self: flex-end;}
+.crypto-change  {grid-area: change; justify-self: flex-end;}
+
+
+.fa-caret-up,
+.fa-caret-up + h4 {
+    color: green
+}
+
+.fa-caret-down,
+.fa-caret-down + h4 {
+    color: red
+}
+
+/**** TIME SECTION *****/
+section.time h1 {
+    font-size: 2rem;
+    margin-top: 0.3em;
+}
+
+section.time h2 {
+    font-size: 4.5rem
+}
+
+/***** WEATHER SECTION ******/
+
+.weather-data {
+    display: grid;
+    margin-top: 0.5em;
+}
+
+.weather-main {
+    display: grid;
+    grid-template-areas: 
+        "name img"
+        "temp img"
+        "description wind"
+        "details speed"
+    ;
+}
+
+.weather-name {
+    grid-area: name; 
+    font-size: 1.5rem
+}
+
+.weather-temp {
+    grid-area: temp; 
+    font-size: 2.5rem;
+    margin-top: -1rem;
+}
+.weather-img {
+    grid-area: img;
+    margin-top: -1rem;
+}
+
+.weather-description {
+    grid-area: description; 
+}
+
+.weather-details {
+    grid-area: details; 
+}
+
+.weather-wind {
+    grid-area: wind; 
+}
+
+
+/* .weather-card {
+    background-color: paleturquoise;
+    border-radius: var(--border-radius);
+    padding: var(--padding-05)
+} */
+/**** UTILITY *****/
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.align-start {
+    align-self: flex-start;
+}
+
+.align-end {
+    align-self: flex-end;
+    justify-self: flex-end
+}
+
+.align-center {
+    align-self: center
+}
+
+ul {
+    padding-left: 0
+}
+
+.padding0 {
+    padding: 0
+}
+
+.gap05 {
+    gap: 0.5em;
+}
+
+.gap1 {
+    gap: 1em;
+}
+
+.fs-500 {
+    font-size: var(--fs-500)
+}
+
+.block {
+    display: block
+}
+
+.outbound-link {
+    color: inherit
+}
+
+button {
+    cursor: pointer;
+}
+
+.settings-btn {
+    border: none;
+    border-radius: 0 calc(var(--border-radius) - var(--padding-05)) 0 0;
+}
+
+.search-btn {
+    border-radius: 0 calc(var(--border-radius) - var(--padding-05)) calc(var(--border-radius) - var(--padding-05)) 0;
+}
+
+
+.toast {
+    background-color: orangered;
+    border-radius: var(--border-radius);
+    padding: var(--padding-05);
+    position: fixed;
+    align-self: flex-end;
+    justify-self: center;
+    transform: translateY(4rem);
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.glass {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: var(--padding-05);
+    width: fit-content;
+}
+
+.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.outline {
+    outline: 3px solid red;
+}
+
+/* handles the draggable sections */
+.crypto,
+.time,
+.weather {
+    position: absolute;
+    z-index: 9;
+  }
+  
+section > header {
+    width: 100%;
+    cursor: move;
+    background: rgba(255, 255, 255, 0.5);
+    /* nested border radius = parent border-radius - parent padding */
+    border-radius: calc(var(--border-radius) - var(--padding-05)) calc(var(--border-radius) - var(--padding-05)) 0 0;
+    text-align: right;
+}
+
+/**** DIALOGS *****/
+dialog {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    max-height: 100vh;
+    width: 30vw;
+    padding: 2em 1em;
+}
+
+dialog::backdrop {
+    background: rgba(255, 255, 255, 0.5);
+    filter: blur(200px);
+}
+
+.close-btn {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+}
+
+fieldset {
+    margin-bottom: 1.5em
+}
+
+.theme-picker {
+    display: flex;
+    align-items: center;
+}
+
+.theme-picker label {
+    margin-right: 0.3em;
+}
+
+.theme-picker input {
+    flex: 1;
+    width: 50%;
+}
