@@ -314,22 +314,22 @@ fieldset {
     width: 50%;
 }
 
-input[type="radio"] {
-    appearance: none;
-    border-radius: 50%;
-    width: 16px;
-    height: 16px;
-    border: 2px solid var(--clr-input);
+input,
+select {
     transition: 0.2s all linear;
-}  
- 
+}
+
+input[type="radio"] {
+    border-radius: 50%;
+}
+
+input[type="radio"],
 input[type="checkbox"] {
     appearance: none;
     width: 16px;
     height: 16px;
     border: 2px solid var(--clr-input);
-    transition: 0.2s all linear;
-} 
+}  
 
 input:checked {
     border: 6px solid var(--clr-input);
@@ -341,7 +341,7 @@ input[type="checkbox"]:hover {
 }
 
 input[type="search"]:hover {
-    outline: 2px solid var(--clr-input)
+    outline: 4px solid var(--clr-input);
 }
 
 select:active,
