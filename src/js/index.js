@@ -2,6 +2,7 @@ import { dragElement } from "./utilities.js"
 import { fetchAPI } from "./utilities.js"
 import { getSelectedInput } from "./utilities.js"
 import { hexToRgbA } from "./utilities.js"
+import { changeInputColor } from "./utilities.js"
 import { handleError } from "./utilities.js"
 import { handleInputError } from "./utilities.js"
 
@@ -114,6 +115,10 @@ currencySelector.addEventListener("change", function() {
             currencySymbol = "£";
             currency = "gbp"
             break;
+        case "JPY":
+            currencySymbol = "¥";
+            currency = "jpy"
+            break;
         default:
             currencySymbol = "€"; // Default to EUR if none matched
     }
@@ -214,19 +219,27 @@ unitInputs.forEach(function (radio) {
 
 ///// COLOR SECTION /////
 
-const colorPicker = document.getElementById("colorPicker")
-colorPicker.addEventListener("input", function() {
-    renderColor()
+const glassColorPicker = document.getElementById("glassColorPicker")
+glassColorPicker.addEventListener("input", function() {
+    changeGlassColor()
 })
 
 // Changes the background-color of all .glass divs
-function renderColor() {
-    const selectedColor = hexToRgbA(colorPicker.value, "0.2")
+function changeGlassColor() {
+    const selectedColor = hexToRgbA(glassColorPicker.value, "0.2")
     const divs = document.querySelectorAll(".glass")
     divs.forEach(div => {
         div.style.backgroundColor = selectedColor
     })
 }
+
+const inputColorPicker = document.getElementById("inputColorPicker")
+inputColorPicker.addEventListener("input", function() {
+    changeInputColor("--clr-input", inputColorPicker.value)
+
+})
+
+
 
 ///// UTILITIES /////
 

@@ -92,3 +92,11 @@ export function hexToRgbA(hex, alpha){
   }
   throw new Error('Bad Hex');
 }
+
+
+
+// Changes the color of CSS variable: takes 2 arguments: variable, color as string
+export function changeInputColor(variable, color) {
+  document.documentElement.style
+    .setProperty(variable, color);
+}
