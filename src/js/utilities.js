@@ -39,9 +39,9 @@ export function dragElement(elmnt) {
   }
 }
 
-export function handleError() {
+export function handleError(message) {
   const toast = document.getElementById("toast")
-  toast.textContent = "Couldn't fetch data. Please try again."
+  toast.textContent = message
   toast.classList.toggle("show")
   setTimeout(function() {
       toast.classList.toggle("show")
