@@ -17,3 +17,4 @@ Icon: <a href="https://www.flaticon.com/free-icons/summary" title="summary icons
 Make an element draggable: https://www.w3schools.com/howto/howto_js_draggable.asp
 Convert HEX to RGBA: https://stackoverflow.com/questions/21646738/convert-hex-to-rgba
 Glassmorphism CSS generator: https://css.glass/
+Geolocation API: https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
