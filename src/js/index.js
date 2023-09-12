@@ -43,7 +43,7 @@ form.addEventListener("submit", function(e) {
         renderUnsplash(query) 
         themePicker.value = ""
     } else {
-        handleError()
+        handleError("Couldn't fetch data. Please try again.")
         handleInputError()
     }
 })
@@ -86,10 +86,10 @@ async function renderCoinGecko(array) {
     }
 }
 
+// Event listener to refresh data
 document.getElementById("refresh-crypto-btn").addEventListener("click", function() {
     renderCoinGecko(getSelectedInput("cryptocurrency"))
 })
-
 
 // Currency selector in dialog
 const currencySelector = document.getElementById("currency-selector")
@@ -157,11 +157,13 @@ localeSelector.addEventListener("change", function() {
 
 ///// WEATHER SECTION /////
 async function renderWeather() {
+
     const options = {
       enableHighAccuracy: true,
       timeout: 5000,
       maximumAge: 0,
-    };
+    }
+
     async function success(pos) {
         const crd = pos.coords;
         const latitude = crd.latitude
@@ -197,14 +199,16 @@ async function renderWeather() {
         }
         catch (error) {
             console.error(error)
-            handleError()
+            handleError("Couldn't fetch data. Please try again.")
         }
     }
     
     function error(err) {
-      console.warn(`ERROR(${err.code}): ${err.message}`);
+        console.warn(`ERROR(${err.code}): ${err.message}`)
+        handleError("Geolocation is not supported by your browser.")
+        document.getElementById("weather-data").textContent = "Geolocation is not supported by your browser."
     }
-    
+
     navigator.geolocation.getCurrentPosition(success, error, options);
 }
 
@@ -216,6 +220,10 @@ unitInputs.forEach(function (radio) {
     })
 })
 
+// Event listener to refresh data
+document.getElementById("refresh-weather-btn").addEventListener("click", function() {
+    renderWeather()
+})
 
 ///// COLOR SECTION /////
 
