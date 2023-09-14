@@ -63,8 +63,7 @@ main {
     grid-template-areas:
         "image name price"
         "image symbol change";
-    grid-template-columns: 30px 1fr 1fr;
-    width: 85%;
+    grid-template-columns: 45px 1fr 1fr;
     margin: 0 auto;
     column-gap: 1em;
 }
