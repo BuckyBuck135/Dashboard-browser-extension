@@ -60,10 +60,12 @@ main {
 
 .crypto-data {
     display: grid;
-    grid-template-areas: 
+    grid-template-areas:
         "image name price"
-        "image symbol change"
-    ;
+        "image symbol change";
+    grid-template-columns: 30px 1fr 1fr;
+    width: 85%;
+    margin: 0 auto;
     column-gap: 1em;
 }
 
@@ -73,6 +75,13 @@ main {
 .crypto-price {grid-area: price; justify-self: flex-end;}
 .crypto-change  {grid-area: change; justify-self: flex-end;}
 
+.crypto-data h3 {
+    font-size: 1.2rem;
+}
+
+.crypto-data h4 {
+    font-size: 1rem;
+}
 
 .fa-caret-up,
 .fa-caret-up + h4 {
